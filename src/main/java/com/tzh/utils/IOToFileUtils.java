@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.RandomAccessFile;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Java读取文件工具类——IO
@@ -163,6 +165,31 @@ public class IOToFileUtils {
             e.printStackTrace();
         }
     }
+    
+    public static List<String> readFileByLinesList(String fileName){
+    	File file = new File(fileName);
+    	BufferedReader reader = null;
+    	List<String> strList = new ArrayList<>();
+    	try{
+    		System.out.println("以行为单位读取文件内容，一次读取一整行：");
+    		reader = new BufferedReader(new FileReader(file));
+    		String tempString = null;
+    		//int line = 1;
+    		//一次读入一行，直到读入null为文件结束
+    		while((tempString = reader.readLine())!=null){
+    			//显示行号
+    			//System.out.println("line "+line+":"+tempString);
+    			strList.add(tempString);
+    			//line++;
+    		}
+    		reader.close();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	return strList;
+    }
+    
+ 
 
     /**
      * 随机读取文件内容
